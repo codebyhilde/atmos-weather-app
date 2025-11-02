@@ -1,11 +1,14 @@
+import { Header } from "./components/Header";
+import { useToggleTheme } from "./hooks/useToggleTheme";
+
 function App() {
-  return (
-    <>
-      <header>
-        <h1 className="text-2xl text-center">Atmos - Aplicación Meteorológica</h1>
-      </header>
-    </>
-  )
+    const { theme, toggleTheme } = useToggleTheme();
+    
+    return (
+        <div class="container mx-auto p-4 max-w-lg min-h-screen">
+            <Header theme={theme} toggleTheme={toggleTheme} />
+        </div>
+    );
 }
 
-export default App
+export default App;
