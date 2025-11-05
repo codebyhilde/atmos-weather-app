@@ -3,12 +3,12 @@ import { Location } from "./components/Location";
 import { CurrentTime } from "./components/CurrentTime";
 import { WeatherCondition } from "./components/WeatherCondition";
 import { HourlyForecast } from "./components/HourlyForecast";
-import { useToggleTheme } from "./hooks/useToggleTheme";
+import { useTheme } from "./hooks/useTheme";
 import forecast from "./mocks/forecast.json"
 import data from "./mocks/with-results.json";
 
 function App() {
-    const { theme, toggleTheme } = useToggleTheme();
+    const { theme, toggleTheme } = useTheme();
     const location = data.location;
     const currentTime = data.current;
 

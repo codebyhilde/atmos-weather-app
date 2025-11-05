@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 type Theme = "light" | "dark";
 
-export function useToggleTheme() {
+export function useTheme() {
     const [theme, setTheme] = useState<Theme>("light");
 
     const toggleTheme = () => {
