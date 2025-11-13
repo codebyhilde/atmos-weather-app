@@ -1,13 +1,13 @@
 interface WeatherConditionProps {
     humidity: number;
-    windKph: number;
-    pressureMb: number;
+    windSpeedKph: number;
+    pressure: number;
 }
 
 export function WeatherCondition({
     humidity,
-    windKph,
-    pressureMb
+    windSpeedKph,
+    pressure
 }: WeatherConditionProps) {
     return (
         <section className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
@@ -24,7 +24,7 @@ export function WeatherCondition({
                     Viento
                 </p>
                 <div className="text-2xl font-semibold">
-                    💨 <span>{windKph} km/h</span>
+                    💨 <span>{windSpeedKph} km/h</span>
                 </div>
             </div>
             <div className="glass-card text-center p-4 rounded-2xl shadow-lg">
@@ -32,7 +32,7 @@ export function WeatherCondition({
                     Presión
                 </p>
                 <div className="text-2xl font-semibold">
-                    🌡️ <span>{pressureMb} mb</span>
+                    🌡️ <span>{pressure} hPa</span>
                 </div>
             </div>
         </section>
