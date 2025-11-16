@@ -24,7 +24,7 @@ export function WeatherCondition({
                     Viento
                 </p>
                 <div className="text-2xl font-semibold">
-                    💨 <span>{windSpeedKph} km/h</span>
+                    💨<span>{windSpeedKph} km/h</span>
                 </div>
             </div>
             <div className="glass-card text-center p-4 rounded-2xl shadow-lg">

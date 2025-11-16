@@ -1,20 +1,18 @@
 interface CurrentTimeProps {
-    iconCode: string;
+    icon: string;
     tempCelsius: number;
     weatherInfo: string;
 }
 
 export function CurrentTime({
-    iconCode,
+    icon,
     tempCelsius,
     weatherInfo
 }: CurrentTimeProps) {
-    const url = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
-    
     return (
         <section className="text-center mb-8">
             <div className="flex justify-center mb-4">
-                <img className="h-24 w-auto" src={url} alt={`${weatherInfo}`} />
+                <p className="text-6xl">{icon}</p>
             </div>
             <div className="text-7xl font-bold">
                 {tempCelsius}
