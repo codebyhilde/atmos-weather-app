@@ -67,6 +67,10 @@ function getIconEmoji(iconCode: string): string {
     }
 }
 
+function capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 // Procesa datos del clima actual
 function normalizeCurrentData(
     current: OpenWeatherMapResponse["current"],
@@ -75,7 +79,7 @@ function normalizeCurrentData(
     return {
         hour: formatUnixToLocalTime(current.dt, timezone),
         temp: Math.round(current.temp),
-        description: current.weather[0].description,
+        description: capitalizeFirstLetter(current.weather[0].description),
         icon: getIconEmoji(current.weather[0].icon),
         humidity: current.humidity,
         wind_speed: Math.round(current.wind_speed * 3.6), // Convertir m/s a kph
