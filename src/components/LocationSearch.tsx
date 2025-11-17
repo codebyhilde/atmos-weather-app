@@ -5,8 +5,8 @@ import { usStateList } from "../data/usStates";
 interface LocationSearchProps {
     onSearch: (search: {
         city: string;
-        country: string;
-        state?: string;
+        countryCode: string;
+        stateCode?: string;
     }) => void;
 }
 
@@ -42,8 +42,8 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
 
         onSearch({
             city,
-            country: selectedCountry.code,
-            state: selectedStateCode
+            countryCode: selectedCountry.code,
+            stateCode: selectedStateCode
         });
     };
 

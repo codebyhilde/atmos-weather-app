@@ -5,8 +5,8 @@ interface HeaderProps {
     toggleTheme: () => void;
     onSearch: (search: {
         city: string;
-        country: string;
-        state?: string;
+        countryCode: string;
+        stateCode?: string;
     }) => void;
 }
 
