@@ -51,6 +51,8 @@ app.use("/api", weatherRateLimiter);
 app.use("/api", weatherRouter);
 
 // Arrancar el Servidor
-app.listen(PORT, () => {
-    console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
+// });
+
+export default app;
