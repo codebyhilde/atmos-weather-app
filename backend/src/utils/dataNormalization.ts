@@ -92,35 +92,16 @@ function normalizeHourlyForecast(
     hourlyData: Hourly[],
     timezone: string
 ): NormalizedHourlyForecast[] {
-    const targetHours = [
-        "6:00 AM",
-        "9:00 AM",
-        "12:00 PM",
-        "3:00 PM",
-        "6:00 PM",
-        "9:00 PM",
-        "12:00 AM"
-    ];
+    // Se toman las 6 horas posteriores a la hora actual
+    const nextHours = hourlyData.slice(1, 7);
 
-    const targetHourSet = new Set(targetHours);
-    const hourlyForecast: NormalizedHourlyForecast[] = [];
-
-    // Iteramos sobre las primeras 24 horas del día
-    for (const hour of hourlyData.slice(0, 24)) {
-        const time = formatUnixToLocalTime(hour.dt, timezone);
-
-        // Verifica que la hora actual este en las horas objetivos y evita duplicados
-        if (
-            targetHourSet.has(time) &&
-            !hourlyForecast.find(h => h.time === time)
-        ) {
-            hourlyForecast.push({
-                time: time,
-                temp: Math.round(hour.temp),
-                icon: getIconEmoji(hour.weather[0].icon)
-            });
-        }
-    }
+    const hourlyForecast: NormalizedHourlyForecast[] = nextHours.map(hour => {
+        return {
+            time: formatUnixToLocalTime(hour.dt, timezone),
+            temp: Math.round(hour.temp),
+            icon: getIconEmoji(hour.weather[0].icon)
+        };
+    });
 
     return hourlyForecast;
 }
