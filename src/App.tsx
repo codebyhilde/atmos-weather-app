@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { Loader } from "./components/Loader.tsx";
 import { ErrorState } from "./components/ErrorState.tsx";
@@ -12,14 +13,27 @@ import { useWeather } from "./hooks/useWeather";
 function App() {
     const { theme, toggleTheme } = useTheme();
     const { data, isLoading, error, fetchWeather } = useWeather();
-
-    // Función de búsqueda
-    const handleSearch = (search: {
+    const [locationLabel, setLocationLabel] = useState<{
         city: string;
-        countryCode: string;
-        stateCode?: string;
-    }) => {
-        fetchWeather(search);
+        country: string;
+        state?: string;
+    } | null>(null);
+
+    // Función orquestadora: actualiza UI y llama a la API
+    const handleLocationUpdate = (query: LocationQuery) => {
+        // Almacena los nombres asociados al lugar consultado para mostrarlos en Location
+        setLocationLabel({
+            city: query.city,
+            country: query.countryName,
+            state: query.stateName
+        });
+
+        // Llamada a la API
+        fetchWeather({
+            city: query.city,
+            country: query.countryCode,
+            state: query.stateCode
+        });
     };
 
     // Manejo de estados de carga y error
@@ -33,7 +47,7 @@ function App() {
                 <Header
                     theme={theme}
                     toggleTheme={toggleTheme}
-                    onSearch={handleSearch}
+                    onSearch={handleLocationUpdate}
                 />
 
                 <ErrorState
@@ -51,7 +65,7 @@ function App() {
                 <Header
                     theme={theme}
                     toggleTheme={toggleTheme}
-                    onSearch={handleSearch}
+                    onSearch={handleLocationUpdate}
                 />
                 <p className="text-center mt-10">
                     Busca una ciudad para comenzar.
@@ -68,9 +82,14 @@ function App() {
             <Header
                 theme={theme}
                 toggleTheme={toggleTheme}
-                onSearch={handleSearch}
+                onSearch={handleLocationUpdate}
             />
-            <Location place={timezone} hour={current.hour} />
+            <Location
+                city={locationLabel.city}
+                country={locationLabel.country}
+                state={locationLabel.state}
+                hour={current.hour}
+            />
             <CurrentTime
                 icon={current.icon}
                 tempCelsius={current.temp}

@@ -1,13 +1,10 @@
 import { LocationSearch } from "./LocationSearch";
+import type { LocationQuery } from "../interfaces/locationQuery";
 
 interface HeaderProps {
     theme: "light" | "dark";
     toggleTheme: () => void;
-    onSearch: (search: {
-        city: string;
-        countryCode: string;
-        stateCode?: string;
-    }) => void;
+    onSearch: (query: LocationQuery) => void;
 }
 
 export function Header({ theme, toggleTheme, onSearch }: HeaderProps) {

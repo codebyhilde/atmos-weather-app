@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { countryList } from "../data/countries";
 import { usStateList } from "../data/usStates";
+import type { LocationQuery } from "../interfaces/locationQuery";
 
 interface LocationSearchProps {
-    onSearch: (search: {
-        city: string;
-        countryCode: string;
-        stateCode?: string;
-    }) => void;
+    onSearch: (query: LocationQuery) => void;
 }
 
 export function LocationSearch({ onSearch }: LocationSearchProps) {
@@ -43,7 +40,9 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
         onSearch({
             city,
             countryCode: selectedCountry.code,
-            stateCode: selectedStateCode
+            stateCode: selectedStateCode,
+            countryName: selectedCountry.name,
+            stateName: showStates ? stateName : undefined
         });
     };
 
