@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import weatherRouter from "./routes/weatherRoutes";
+import { weatherRateLimiter } from "./middlewares/rateLimiter"
 
 const PORT = process.env.PORT || 3001;
 
@@ -43,9 +44,10 @@ app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Servidor del Clima operativo.");
 });
 
+// Uso del rate limiter
+app.use("/api", weatherRateLimiter);
+
 // Enrutamiento de la API
-// Todas las rutas dentro de weatherRouter serán accesibles con el prefijo /api
-// Ejemplo: /api/weather
 app.use("/api", weatherRouter);
 
 // Arrancar el Servidor
