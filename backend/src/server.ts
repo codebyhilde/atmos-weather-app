@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const allowedOrigins = [
-    "http://localhost:5173"
-    // AGREGAR: "https://dominio-de-produccion.com"
+    "http://localhost:5173",
+    "https://atmos-weather-one.vercel.app"
 ];
 
 const corsOptions = {
