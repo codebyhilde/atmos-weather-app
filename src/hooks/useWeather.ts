@@ -1,36 +1,5 @@
 import { useState } from "react";
-
-interface HourlyForecast {
-    time: string;
-    temp: number;
-    icon: string;
-}
-
-// Datos del pronóstico semanal
-interface DailyForecast {
-    labels: string[];
-    maxTemps: number[];
-    minTemps: number[];
-}
-
-// Datos actuales del clima
-interface CurrentData {
-    hour: string;
-    temp: number;
-    description: string;
-    icon: string;
-    humidity: number;
-    wind_speed: number;
-    pressure: number;
-}
-
-// Interfaz principal
-interface CompleteWeatherData {
-    timezone: string;
-    current: CurrentData;
-    hourly: HourlyForecast[];
-    daily: DailyForecast;
-}
+import type { CompleteWeatherData } from "../interfaces/weatherData"
 
 // URL base del backend
 const API_URL = "http://localhost:3001/api";
