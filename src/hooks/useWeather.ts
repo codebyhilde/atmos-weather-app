@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { CompleteWeatherData } from "../interfaces/weatherData"
 
 // URL base del backend
-const API_URL = "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
 
 export function useWeather() {
     const [data, setData] = useState<CompleteWeatherData | null>(null);
