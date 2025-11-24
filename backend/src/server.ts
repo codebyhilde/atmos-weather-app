@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3001;
 // Inicialización de Express
 const app = express();
 
+app.set('trust proxy', 1);
+
 const allowedOrigins = [
     "http://localhost:5173",
     "https://atmos-weather-one.vercel.app"
