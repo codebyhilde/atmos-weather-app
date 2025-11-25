@@ -2,14 +2,14 @@ import type {
     OpenWeatherMapResponse,
     Hourly,
     Daily
-} from "../interfaces/openWeatherData";
+} from "../interfaces/openWeatherData.js";
 
 import type {
     NormalizedWeatherData,
     NormalizedCurrentData,
     NormalizedDailyForecast,
     NormalizedHourlyForecast
-} from "../interfaces/normalizedWeatherData";
+} from "../interfaces/normalizedWeatherData.js";
 
 // Formatea un timestamp UNIX a una hora local (AM/PM)
 // Requiere la zona horaria (Ejemplo: "America/Caracas")
@@ -79,8 +79,10 @@ function normalizeCurrentData(
     return {
         hour: formatUnixToLocalTime(current.dt, timezone),
         temp: Math.round(current.temp),
-        description: capitalizeFirstLetter(current.weather[0].description),
-        icon: getIconEmoji(current.weather[0].icon),
+        description: capitalizeFirstLetter(
+            current.weather?.[0]?.description || "No description"
+        ),
+        icon: getIconEmoji(current.weather?.[0]?.icon || "01d"),
         humidity: current.humidity,
         wind_speed: Math.round(current.wind_speed * 3.6), // Convertir m/s a kph
         pressure: current.pressure
@@ -99,7 +101,7 @@ function normalizeHourlyForecast(
         return {
             time: formatUnixToLocalTime(hour.dt, timezone),
             temp: Math.round(hour.temp),
-            icon: getIconEmoji(hour.weather[0].icon)
+            icon: getIconEmoji(hour.weather?.[0]?.icon || "01d")
         };
     });
 
@@ -122,6 +124,11 @@ function normalizeDailyForecast(dailyData: Daily[]): NormalizedDailyForecast {
         const dayIndex = date.getDay();
 
         const label = index === 0 ? "Hoy" : dayNames[dayIndex];
+
+        if (!label)
+            throw new Error(
+                "Error al obtener las etiquetas de los días de la semana."
+            );
 
         processedData.labels.push(label);
         processedData.maxTemps.push(Math.round(day.temp.max));

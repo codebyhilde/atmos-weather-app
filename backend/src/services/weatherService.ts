@@ -1,6 +1,6 @@
-import type { OpenWeatherMapResponse } from "../interfaces/openWeatherData";
-import type { GeocodingResponse } from "../interfaces/geocodingResponse";
-import type { NormalizedWeatherData } from "../interfaces/normalizedWeatherData";
+import type { OpenWeatherMapResponse } from "../interfaces/openWeatherData.js";
+import type { GeocodingResponse } from "../interfaces/geocodingResponse.js";
+import type { NormalizedWeatherData } from "../interfaces/normalizedWeatherData.js";
 import { normalizeWeatherData } from "../utils/dataNormalization.js";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
@@ -35,11 +35,11 @@ async function getCoordinates(
 
         const data = (await response.json()) as GeocodingResponse[];
 
-        if (data.length === 0) {
+        if (!data || data.length === 0) {
             throw new Error(`Ubicación no encontrada: ${q}`);
         }
-
-        const { lat, lon } = data[0];
+        
+        const { lat, lon } = data[0]!;
         return { lat, lon };
     } catch (error) {
         console.error("Error en Geocoding API:", error);

@@ -2,7 +2,7 @@ import { Router } from "express";
 import type { Request, Response } from "express";
 import { getNormalizedWeather } from "../services/weatherService.js";
 
-const router = Router();
+const router: Router = Router();
 
 // Endpoint: GET /api/weather?city=Caracas&country=VE
 // O:         GET /api/weather?city=Miami&country=US&state=FL
