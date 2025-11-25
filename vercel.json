@@ -8,7 +8,5 @@
       "source": "/(.*)",
       "destination": "/dist/$1"
     }
-  ],
-  "installCommand": "npm install",
-  "buildCommand": "tsc -p backend/tsconfig.json && npm run build"
+  ]
 }
