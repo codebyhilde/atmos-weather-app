@@ -1,25 +1,12 @@
 {
-  "builds": [
+  "rewrites": [
     {
-      "src": "backend/dist/server.js",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "backend/dist/server.js"
     },
     {
-      "src": "./",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/dist/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "dist/$1"
+      "source": "/(.*)",
+      "destination": "/dist/$1"
     }
   ],
   "installCommand": "npm install",
