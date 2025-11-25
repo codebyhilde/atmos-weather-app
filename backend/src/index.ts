@@ -3,7 +3,7 @@ import express from "express";
 import type { Express, Request, Response } from "express";
 import cors from "cors";
 import weatherRouter from "./routes/weatherRoutes.js";
-import { weatherRateLimiter } from "./middlewares/rateLimiter.js"
+// import { weatherRateLimiter } from "./middlewares/rateLimiter.js"
 
 // const PORT = process.env.PORT || 3001;
 
@@ -28,7 +28,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 // Uso del rate limiter
-app.use("/api", weatherRateLimiter);
+// app.use("/api", weatherRateLimiter);
 
 // Enrutamiento de la API
 app.use("/api", weatherRouter);
