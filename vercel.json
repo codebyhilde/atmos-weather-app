@@ -5,7 +5,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "index.html",
+      "src": "./",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
