@@ -1,8 +1,13 @@
 {
+  "functions": {
+    "backend/dist/server.js": {
+      "runtime": "@vercel/node@20.x"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "backend/dist/server.js"
+      "destination": "/backend/dist/server.js"
     },
     {
       "source": "/(.*)",
