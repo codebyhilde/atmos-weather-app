@@ -2,7 +2,7 @@
   "compilerOptions": {
     // File Layout
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "../api",
     // Environment Settings
     "module": "nodenext",
     "target": "esnext",
