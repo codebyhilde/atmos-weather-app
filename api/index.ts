@@ -1,6 +1,5 @@
 import "dotenv/config";
 import express from "express";
-import type { Response, Request } from "express";
 import cors from "cors";
 import weatherRouter from "./src/routes/weatherRoutes";
 import { weatherRateLimiter } from "./src/middlewares/rateLimiter";
@@ -39,7 +38,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ruta de Bienvenida (Health Check)
-app.get("/", (_req: Request, res: Response) => {
+app.get("/", (_req: express.Request, res: express.Response) => {
     res.status(200).send("Servidor del Clima operativo.");
 });
 
