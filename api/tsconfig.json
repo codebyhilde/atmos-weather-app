@@ -4,9 +4,8 @@
     "rootDir": "./",
     "outDir": "./dist",
     "target": "ES2023",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "DOM"],
     "module": "ESNext",
-    "types": ["node"],
     "skipLibCheck": true,
 
     /* Bundler mode */
