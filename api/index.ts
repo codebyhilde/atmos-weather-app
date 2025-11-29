@@ -39,7 +39,7 @@ app.use(express.json());
 
 // Ruta de Bienvenida (Health Check)
 app.get("/", (_req: express.Request, res: express.Response) => {
-    res.status(200).send("Servidor del Clima operativo.");
+    (res as express.Response).status(200).send("Servidor del Clima operativo.");
 });
 
 // Uso del rate limiter
