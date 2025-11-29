@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start:fe": "vite",
-    "start:be": "tsx watch backend/src/server.ts",
+    "start:be": "tsx watch api/index.ts",
     "dev": "concurrently \"pnpm run start:fe\" \"pnpm run start:be\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
