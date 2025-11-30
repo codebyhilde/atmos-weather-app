@@ -4,7 +4,7 @@ import { getNormalizedWeather } from "../services/weatherService.js";
 const router = Router();
 
 // Endpoint: GET /api/weather
-router.get("/weather", (async (req, res) => {
+router.get("/weather", (async (req: Request, res: Response) => {
     // TIPADO DE RUNTIME: Usamos el casting 'as' para req.query
     const { city, country, state } = req.query as {
         city?: string;
