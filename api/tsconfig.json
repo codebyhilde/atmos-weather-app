@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "preserveSymlinks": false,
     "types": ["node", "express", "cors"],
     "esModuleInterop": true
   },
