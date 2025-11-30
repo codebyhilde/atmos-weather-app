@@ -5,7 +5,7 @@
     "outDir": "./dist",
     "target": "ES2023",
     "lib": ["ES2023"],
-    "module": "ES2023",
+    "module": "es2022",
     "skipLibCheck": true,
     "types": ["node", "express", "cors"],
     "moduleResolution": "bundler",
