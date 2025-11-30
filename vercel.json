@@ -1,27 +1,12 @@
 {
-  "builds": [
+  "rewrites": [
     {
-      "src": "backend/src/server.ts",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
     },
     {
-      "src": "index.html",
-      "use": "@vercel/static-build",
-      "config": { 
-        "distDir": "dist"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/src/server.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "dist/$1"
-    }
-  ],
-  "installCommand": "npm install", 
-  "buildCommand": "npm run build" 
+  ]
 }

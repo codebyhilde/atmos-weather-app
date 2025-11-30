@@ -1,19 +1,6 @@
-import type {
-    OpenWeatherMapResponse,
-    Hourly,
-    Daily
-} from "../interfaces/openWeatherData";
-
-import type {
-    NormalizedWeatherData,
-    NormalizedCurrentData,
-    NormalizedDailyForecast,
-    NormalizedHourlyForecast
-} from "../interfaces/normalizedWeatherData";
-
 // Formatea un timestamp UNIX a una hora local (AM/PM)
 // Requiere la zona horaria (Ejemplo: "America/Caracas")
-function formatUnixToLocalTime(unix: number, timezone: string): string {
+function formatUnixToLocalTime(unix, timezone) {
     const date = new Date(unix * 1000);
     const timeString = date.toLocaleTimeString("en-US", {
         hour: "2-digit",
@@ -26,7 +13,7 @@ function formatUnixToLocalTime(unix: number, timezone: string): string {
 }
 
 // Traduce el código de la API para los iconos por un emoji relacionado
-function getIconEmoji(iconCode: string): string {
+function getIconEmoji(iconCode) {
     const conditionCode = iconCode.substring(0, 2);
 
     switch (conditionCode) {
@@ -67,15 +54,12 @@ function getIconEmoji(iconCode: string): string {
     }
 }
 
-function capitalizeFirstLetter(str: string) {
+function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // Procesa datos del clima actual
-function normalizeCurrentData(
-    current: OpenWeatherMapResponse["current"],
-    timezone: string
-): NormalizedCurrentData {
+function normalizeCurrentData(current, timezone) {
     return {
         hour: formatUnixToLocalTime(current.dt, timezone),
         temp: Math.round(current.temp),
@@ -88,14 +72,11 @@ function normalizeCurrentData(
 }
 
 // Procesa el pronóstico por horas
-function normalizeHourlyForecast(
-    hourlyData: Hourly[],
-    timezone: string
-): NormalizedHourlyForecast[] {
+function normalizeHourlyForecast(hourlyData, timezone) {
     // Se toman las 6 horas posteriores a la hora actual
     const nextHours = hourlyData.slice(1, 7);
 
-    const hourlyForecast: NormalizedHourlyForecast[] = nextHours.map(hour => {
+    const hourlyForecast = nextHours.map(hour => {
         return {
             time: formatUnixToLocalTime(hour.dt, timezone),
             temp: Math.round(hour.temp),
@@ -107,9 +88,9 @@ function normalizeHourlyForecast(
 }
 
 // Procesa el pronóstico semanal
-function normalizeDailyForecast(dailyData: Daily[]): NormalizedDailyForecast {
+function normalizeDailyForecast(dailyData) {
     const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-    const processedData: NormalizedDailyForecast = {
+    const processedData = {
         labels: [],
         maxTemps: [],
         minTemps: []
@@ -132,9 +113,7 @@ function normalizeDailyForecast(dailyData: Daily[]): NormalizedDailyForecast {
 }
 
 // Función orquestadora que transforma la respuesta cruda en datos limpios
-export function normalizeWeatherData(
-    apiData: OpenWeatherMapResponse
-): NormalizedWeatherData {
+export function normalizeWeatherData(apiData) {
     const { timezone, current, hourly, daily } = apiData;
 
     return {
