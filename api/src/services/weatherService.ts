@@ -5,7 +5,15 @@ import { normalizeWeatherData } from "../utils/dataNormalization";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
-type FetchResponse = typeof globalThis.Response;
+// --- SOLUCIÓN DEFINITIVA: TIPADO MANUAL ---
+// Definimos nuestra propia interfaz para ignorar la confusión global de TS
+interface SafeFetchResponse {
+    ok: boolean;
+    status: number;
+    statusText: string;
+    json: () => Promise<unknown>;
+}
+// ------------------------------------------
 
 // Obtener Latitud y Longitud
 async function getCoordinates(
@@ -27,7 +35,9 @@ async function getCoordinates(
     const fullUrl = `${geoUrl}?${params.toString()}`;
 
     try {
-        const response: FetchResponse = await fetch(fullUrl);
+        // TRUCO NUCLEAR: Casting doble para borrar la inferencia incorrecta de TS
+        const rawResponse = await fetch(fullUrl);
+        const response = rawResponse as unknown as SafeFetchResponse;
 
         if (!response.ok) {
             throw new Error(
@@ -35,9 +45,10 @@ async function getCoordinates(
             );
         }
 
+        // Casteamos el resultado de json()
         const data = (await response.json()) as GeocodingResponse[];
 
-        if (data.length === 0) {
+        if (!data || data.length === 0) {
             throw new Error(`Ubicación no encontrada: ${q}`);
         }
 
@@ -45,7 +56,6 @@ async function getCoordinates(
         return { lat, lon };
     } catch (error) {
         console.error("Error en Geocoding API:", error);
-        // Re-lanza el error y sirve como Type Guard
         if (
             error instanceof Error &&
             error.message.includes("Ubicación no encontrada")
@@ -78,7 +88,9 @@ async function getRawWeatherData(
     const fullUrl = `${weatherUrl}?${params.toString()}`;
 
     try {
-        const response: FetchResponse = await fetch(fullUrl);
+        // TRUCO NUCLEAR: Casting doble nuevamente
+        const rawResponse = await fetch(fullUrl);
+        const response = rawResponse as unknown as SafeFetchResponse;
 
         if (!response.ok) {
             throw new Error(
@@ -100,10 +112,7 @@ export async function getNormalizedWeather(
     stateCode?: string
 ): Promise<NormalizedWeatherData> {
     const { lat, lon } = await getCoordinates(city, countryCode, stateCode);
-
     const rawData = await getRawWeatherData(lat, lon);
-
     const normalizedData = normalizeWeatherData(rawData);
-
     return normalizedData;
 }
