@@ -4,12 +4,11 @@
     "rootDir": "./",
     "outDir": "./dist",
     "target": "ES2023",
-    "lib": ["ES2023", "DOM"],
-    "module": "ESNext",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "types": ["node", "express", "cors"],
+    "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -21,12 +20,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    
-    "typeRoots": [
-      "./src/types",
-      "../node_modules/@types"
-    ]
+    "noUncheckedSideEffectImports": true
   },
   "include": ["./**/*"]
 }
