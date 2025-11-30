@@ -1,5 +1,4 @@
 import { Router } from "express";
-import type { Request, Response } from "express"; // Importación explícita de tipos
 import { getNormalizedWeather } from "../services/weatherService.js";
 // Asumo que tienes un tipo para la respuesta exitosa, si no, usa 'any' o defínelo aquí
 import type { NormalizedWeatherData } from "../interfaces/normalizedWeatherData.js";
@@ -20,8 +19,8 @@ type WeatherResponseBody = NormalizedWeatherData | { error: string };
 // Request<Params, ResBody, ReqBody, ReqQuery>
 // Response<ResBody>
 router.get("/weather", async (
-    req: Request<{}, WeatherResponseBody, {}, WeatherQueryParams>, 
-    res: Response<WeatherResponseBody>
+    req: express.Request, 
+    res: express.Response
 ) => {
     // Ahora req.query está tipado. 
     // Sin embargo, Express por defecto permite arrays en query, así que forzamos string.
