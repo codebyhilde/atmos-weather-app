@@ -5,10 +5,6 @@ import cors from "cors";
 import weatherRouter from "./src/routes/weatherRoutes.js";
 import { weatherRateLimiter } from "./src/middlewares/rateLimiter.js";
 
-interface ResponseStatus extends Response {
-  status: (code: number) => void;
-}
-
 // Inicialización de Express
 const app = express();
 
@@ -43,7 +39,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ruta de Bienvenida (Health Check)
-app.get("/", (_req: Request, res: Response) => {
+app.get("/", (_req: Request, res: Response<string>) => {
     res.status(200).send("Servidor del Clima operativo.");
 });
 
