@@ -22,6 +22,6 @@
       "dest": "dist/$1"
     }
   ],
-  "installCommand": "npm install", 
-  "buildCommand": "npm run build" 
+  "installCommand": "pnpm install", 
+  "buildCommand": "pnpm run build" 
 }
