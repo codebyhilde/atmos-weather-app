@@ -4,7 +4,7 @@ import { getNormalizedWeather } from "../services/weatherService";
 const router = Router();
 
 // Endpoint: GET /api/weather
-router.get("/weather", async (req, res) => {
+router.get("/weather", (async (req, res) => {
     // TIPADO DE RUNTIME: Usamos el casting 'as' para req.query
     const { city, country, state } = req.query as {
         city?: string;
@@ -31,6 +31,6 @@ router.get("/weather", async (req, res) => {
         // res.json() es el método de Express
         return res.status(500).json({ error: (error as Error).message });
     }
-} as express.Handler); // <--- TRUCO: Castear la función como Handler
+}) as express.Handler); // <--- TRUCO: Castear la función como Handler
 
 export default router;
