@@ -1,8 +1,8 @@
 import { Router } from "express";
 import type { Request, Response } from "express"; // Importación explícita de tipos
-import { getNormalizedWeather } from "../services/weatherService";
+import { getNormalizedWeather } from "../services/weatherService.js";
 // Asumo que tienes un tipo para la respuesta exitosa, si no, usa 'any' o defínelo aquí
-import type { NormalizedWeatherData } from "../interfaces/normalizedWeatherData";
+import type { NormalizedWeatherData } from "../interfaces/normalizedWeatherData.js";
 
 const router = Router();
 
