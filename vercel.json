@@ -21,10 +21,8 @@
     {
       "src": "/(.*)",
       "dest": "/dist/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/dist/index.html"
     }
-  ]
+  ],
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build"
 }
