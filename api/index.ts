@@ -43,7 +43,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ruta de Bienvenida (Health Check)
-app.get("/", (_req: Request, res: Response<ResponseStatus, {}>) => {
+app.get("/", (_req: Request, res: Response) => {
     res.status(200).send("Servidor del Clima operativo.");
 });
 
