@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { CompleteWeatherData } from "../interfaces/weatherData"
 
 // URL base del backend
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 export function useWeather() {
     const [data, setData] = useState<CompleteWeatherData | null>(null);
@@ -30,7 +30,7 @@ export function useWeather() {
             }
 
             // URL COMPLETA: "http://localhost:3001/api/weather?city=X&country=Y..."
-            const fullUrl = `${API_URL}/weather?${params.toString()}`;
+            const fullUrl = `${API_URL}/api/weather?${params.toString()}`;
 
             // Llamada al backend
             const response = await fetch(fullUrl);
