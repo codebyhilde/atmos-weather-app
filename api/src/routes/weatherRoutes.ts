@@ -1,5 +1,5 @@
 import express, { Router, type Request, type Response } from "express"; // Importamos los tipos como si fueran independientes
-import { getNormalizedWeather } from "../services/weatherService";
+import { getNormalizedWeather } from "../services/weatherService.js";
 
 const router = Router();
 
