@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import type { Request, Response } from "express";
 import cors from "cors";
-import weatherRouter from "./src/routes/weatherRoutes";
-import { weatherRateLimiter } from "./src/middlewares/rateLimiter";
+import weatherRouter from "./src/routes/weatherRoutes.js";
+import { weatherRateLimiter } from "./src/middlewares/rateLimiter.js";
 
 // Inicialización de Express
 const app = express();
