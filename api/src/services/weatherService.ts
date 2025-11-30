@@ -5,6 +5,8 @@ import { normalizeWeatherData } from "../utils/dataNormalization";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
+type FetchResponse = typeof globalThis.Response;
+
 // Obtener Latitud y Longitud
 async function getCoordinates(
     city: string,
@@ -25,7 +27,7 @@ async function getCoordinates(
     const fullUrl = `${geoUrl}?${params.toString()}`;
 
     try {
-        const response = await fetch(fullUrl);
+        const response: FetchResponse = await fetch(fullUrl);
 
         if (!response.ok) {
             throw new Error(
@@ -76,7 +78,7 @@ async function getRawWeatherData(
     const fullUrl = `${weatherUrl}?${params.toString()}`;
 
     try {
-        const response = await fetch(fullUrl);
+        const response: FetchResponse = await fetch(fullUrl);
 
         if (!response.ok) {
             throw new Error(
