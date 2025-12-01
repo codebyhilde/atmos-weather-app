@@ -9,7 +9,7 @@
     "target": "esnext",
     // For nodejs:
     "moduleResolution": "nodenext",
-    "lib": ["es2022"],
+    "lib": ["es2022", "DOM"],
     "types": ["node", "express", "cors"],
     // and npm install -D @types/node
 

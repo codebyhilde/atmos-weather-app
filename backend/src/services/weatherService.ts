@@ -35,7 +35,7 @@ async function getCoordinates(
 
         const data = (await response.json()) as GeocodingResponse[];
 
-        if (data.length === 0) {
+        if (!data || data.length === 0) {
             throw new Error(`Ubicación no encontrada: ${q}`);
         }
 

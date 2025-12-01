@@ -79,8 +79,10 @@ function normalizeCurrentData(
     return {
         hour: formatUnixToLocalTime(current.dt, timezone),
         temp: Math.round(current.temp),
-        description: capitalizeFirstLetter(current.weather[0].description),
-        icon: getIconEmoji(current.weather[0].icon),
+        description: capitalizeFirstLetter(
+            current?.weather[0]?.description ?? "No weather description"
+        ),
+        icon: getIconEmoji(current?.weather[0]?.icon ?? "1d"),
         humidity: current.humidity,
         wind_speed: Math.round(current.wind_speed * 3.6), // Convertir m/s a kph
         pressure: current.pressure
@@ -99,7 +101,7 @@ function normalizeHourlyForecast(
         return {
             time: formatUnixToLocalTime(hour.dt, timezone),
             temp: Math.round(hour.temp),
-            icon: getIconEmoji(hour.weather[0].icon)
+            icon: getIconEmoji(hour?.weather[0]?.icon ?? "1d")
         };
     });
 
@@ -122,6 +124,12 @@ function normalizeDailyForecast(dailyData: Daily[]): NormalizedDailyForecast {
         const dayIndex = date.getDay();
 
         const label = index === 0 ? "Hoy" : dayNames[dayIndex];
+
+        if (!label) {
+            throw new Error(
+                "No se asignaron etiquetas para los días de semana"
+            );
+        }
 
         processedData.labels.push(label);
         processedData.maxTemps.push(Math.round(day.temp.max));
