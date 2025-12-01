@@ -10,7 +10,7 @@
     // For nodejs:
     "moduleResolution": "nodenext",
     "lib": ["es2022"],
-    "types": ["node"],
+    "types": ["node", "express", "cors"],
     // and npm install -D @types/node
 
     // Other Outputs
@@ -32,7 +32,6 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
