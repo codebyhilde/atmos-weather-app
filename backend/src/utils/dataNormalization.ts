@@ -2,14 +2,14 @@ import type {
     OpenWeatherMapResponse,
     Hourly,
     Daily
-} from "../interfaces/openWeatherData";
+} from "../interfaces/openWeatherData.js";
 
 import type {
     NormalizedWeatherData,
     NormalizedCurrentData,
     NormalizedDailyForecast,
     NormalizedHourlyForecast
-} from "../interfaces/normalizedWeatherData";
+} from "../interfaces/normalizedWeatherData.js";
 
 // Formatea un timestamp UNIX a una hora local (AM/PM)
 // Requiere la zona horaria (Ejemplo: "America/Caracas")

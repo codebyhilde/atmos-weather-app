@@ -1,15 +1,16 @@
 import "dotenv/config";
-import express, { Request, Response } from "express";
+import express from "express";
+import type { Request, Response } from "express";
 import cors from "cors";
 import weatherRouter from "./routes/weatherRoutes.js";
-import { weatherRateLimiter } from "./middlewares/rateLimiter.js"
+import { weatherRateLimiter } from "./middlewares/rateLimiter.js";
 
-const PORT = process.env.PORT || 3001;
+const NODE_ENVIRONMENT = process.env.NODE_ENV;
 
 // Inicialización de Express
 const app = express();
 
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 
 const allowedOrigins = [
     "http://localhost:5173",
@@ -42,7 +43,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ruta de Bienvenida (Health Check)
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (_req: Request, res: Response) => {
     res.status(200).send("Servidor del Clima operativo.");
 });
 
@@ -53,8 +54,11 @@ app.use("/api", weatherRateLimiter);
 app.use("/api", weatherRouter);
 
 // Arrancar el Servidor
-// app.listen(PORT, () => {
-//     console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
-// });
+if (NODE_ENVIRONMENT === "development") {
+    const PORT = process.env.PORT || 3001;
+    app.listen(PORT, () => {
+        console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
+    });
+}
 
 export default app;
