@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { type Express } from "express";
 import cors from "cors";
 import weatherRouter from "./routes/weatherRoutes.js";
 import { weatherRateLimiter } from "./middlewares/rateLimiter.js";
@@ -7,7 +7,7 @@ import { weatherRateLimiter } from "./middlewares/rateLimiter.js";
 const NODE_ENVIRONMENT = process.env.NODE_ENV;
 
 // Inicialización de Express
-const app = express();
+const app: Express = express();
 
 app.set("trust proxy", 1);
 
