@@ -25,3 +25,7 @@ dist-ssr
 
 # Environment variables
 .env
+
+# Specific directories per app
+apps/*/node_modules
+apps/*/dist
