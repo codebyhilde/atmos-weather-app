@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { countryList } from "../data/countries";
 import { usStateList } from "../data/usStates";
 import type { LocationQuery } from "../interfaces/locationQuery";
+import { Search } from "lucide-react";
 
 interface LocationSearchProps {
     onSearch: (query: LocationQuery) => void;
@@ -95,7 +96,7 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                 type="submit"
                 className="flex-shrink-0 p-2 rounded-full bg-sky-500 text-white hover:bg-sky-600 transition-colors"
             >
-                <span>🔍</span>
+                <Search />
             </button>
         </form>
     );

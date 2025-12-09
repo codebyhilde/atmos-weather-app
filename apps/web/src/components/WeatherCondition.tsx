@@ -1,3 +1,5 @@
+import { Wind, Droplet, Thermometer } from "lucide-react";
+
 interface WeatherConditionProps {
     humidity: number;
     windSpeedKph: number;
@@ -16,7 +18,7 @@ export function WeatherCondition({
                     Humedad
                 </p>
                 <div className="text-2xl font-semibold">
-                    💧 <span>{humidity}%</span>
+                    <Droplet className="text-sky-500 dark:text-sky-300" /> <span>{humidity}%</span>
                 </div>
             </div>
             <div className="glass-card text-center p-4 rounded-2xl shadow-lg">
@@ -24,7 +26,8 @@ export function WeatherCondition({
                     Viento
                 </p>
                 <div className="text-2xl font-semibold">
-                    💨<span>{windSpeedKph} km/h</span>
+                    <Wind className="text-gray-500 dark:text-gray-300"/>
+                    <span>{windSpeedKph} km/h</span>
                 </div>
             </div>
             <div className="glass-card text-center p-4 rounded-2xl shadow-lg">
@@ -32,7 +35,7 @@ export function WeatherCondition({
                     Presión
                 </p>
                 <div className="text-2xl font-semibold">
-                    🌡️ <span>{pressure} hPa</span>
+                    <Thermometer className="text-red-500 dark:text-red-300"/> <span>{pressure} hPa</span>
                 </div>
             </div>
         </section>

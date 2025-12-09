@@ -1,18 +1,23 @@
+import { WeatherIcon } from "./WeatherIcon";
+
 interface CurrentTimeProps {
-    icon: string;
+    weatherCode: string;
     tempCelsius: number;
     weatherInfo: string;
 }
 
 export function CurrentTime({
-    icon,
+    weatherCode,
     tempCelsius,
     weatherInfo
 }: CurrentTimeProps) {
     return (
         <section className="text-center mb-8">
             <div className="flex justify-center mb-4">
-                <p className="text-6xl">{icon}</p>
+                <WeatherIcon
+                    code={weatherCode}
+                    className="w-24 h-24 text-sky-500 dark:text-sky-300"
+                />
             </div>
             <div className="text-7xl font-bold">
                 {tempCelsius}

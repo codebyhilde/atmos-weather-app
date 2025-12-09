@@ -1,5 +1,6 @@
 import { LocationSearch } from "./LocationSearch";
 import type { LocationQuery } from "../interfaces/locationQuery";
+import { Moon, Sun } from "lucide-react";
 
 interface HeaderProps {
     theme: "light" | "dark";
@@ -19,7 +20,7 @@ export function Header({ theme, toggleTheme, onSearch }: HeaderProps) {
                     className="flex-shrink-0 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                     onClick={toggleTheme}
                 >
-                    <span>{theme === "dark" ? "🌙" : "☀️"}</span>
+                    {theme === "dark" ? <Moon /> : <Sun />}
                 </button>
             </div>
 

@@ -92,7 +92,7 @@ function App() {
                 hour={current.hour}
             />
             <CurrentTime
-                icon={current.icon}
+                weatherCode={current.weatherCode}
                 tempCelsius={current.temp}
                 weatherInfo={current.description}
             />
