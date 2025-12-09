@@ -1,7 +1,7 @@
 export interface HourlyForecast {
     time: string;
     temp: number;
-    icon: string;
+    weatherCode: string;
 }
 
 // Datos del pronóstico semanal
@@ -16,7 +16,7 @@ export interface CurrentData {
     hour: string;
     temp: number;
     description: string;
-    icon: string;
+    weatherCode: string;
     humidity: number;
     wind_speed: number;
     pressure: number;

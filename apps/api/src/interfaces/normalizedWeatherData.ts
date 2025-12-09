@@ -4,8 +4,8 @@ export interface NormalizedHourlyForecast {
     time: string;
     // Temperatura redondeada
     temp: number;
-    // Icono (un emoji) asignado por el backend
-    icon: string;
+    // Código para icono del clima
+    weatherCode: string;
 }
 
 // Datos del pronóstico semanal
@@ -24,7 +24,7 @@ export interface NormalizedCurrentData {
     // Descripción del clima (ej. "lluvia ligera")
     description: string;
     // Código del icono del clima (ej. "10d")
-    icon: string;
+    weatherCode: string;
     humidity: number;
     // Velocidad del viento (kph)
     wind_speed: number;
