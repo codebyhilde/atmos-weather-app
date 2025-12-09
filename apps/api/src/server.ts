@@ -4,7 +4,7 @@ import cors from "cors";
 import weatherRouter from "./routes/weatherRoutes.js";
 import { weatherRateLimiter } from "./middlewares/rateLimiter.js";
 
-const NODE_ENVIRONMENT = process.env.NODE_ENV;
+const PORT = process.env.PORT || 3001;
 
 // Inicialización de Express
 const app: Express = express();
@@ -53,11 +53,8 @@ app.use("/api", weatherRateLimiter);
 app.use("/api", weatherRouter);
 
 // Arrancar el Servidor
-if (NODE_ENVIRONMENT === "development") {
-    const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => {
-        console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
+});
 
 export default app;
