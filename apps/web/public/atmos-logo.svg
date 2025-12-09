@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Atmos Weather Favicon</title>
+  <desc>A modern minimalist sun and cloud icon.</desc>
+  <circle cx="44" cy="22" r="15" fill="#FFC107" />
+  
+  <g fill="#3498db">
+    <circle cx="22" cy="42" r="12" />
+    <circle cx="36" cy="34" r="14" />
+    <circle cx="50" cy="42" r="12" />
+    <rect x="22" y="34" width="28" height="20" rx="4" />
+  </g>
+</svg>
