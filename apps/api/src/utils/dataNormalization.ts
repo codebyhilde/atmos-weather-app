@@ -25,48 +25,6 @@ function formatUnixToLocalTime(unix: number, timezone: string): string {
     return timeString.replace(/^0/, ""); // Quita el 0 inicial (03:00 PM -> 3:00 PM)
 }
 
-// Traduce el código de la API para los iconos por un emoji relacionado
-function getIconEmoji(iconCode: string): string {
-    const conditionCode = iconCode.substring(0, 2);
-
-    switch (conditionCode) {
-        // Cielos despejados (Clear Sky)
-        case "01":
-            if (iconCode.endsWith("d")) return "☀️";
-            return "🌙";
-
-        // Nubes dispersas/Pocas nubes (Few Clouds / Scattered Clouds)
-        case "02":
-        case "03":
-            if (iconCode.endsWith("d")) return "🌤️";
-            return "☁️";
-
-        // Nublado (Broken Clouds / Overcast Clouds)
-        case "04":
-            return "☁️";
-
-        // Lluvia (Rain) - Incluye códigos 09, 10
-        case "09":
-        case "10":
-            return "🌧️";
-
-        // Tormenta (Thunderstorm)
-        case "11":
-            return "🌩️";
-
-        // Nieve (Snow)
-        case "13":
-            return "❄️";
-
-        // Niebla/Bruma (Mist/Fog)
-        case "50":
-            return "🌫️";
-
-        default:
-            return "🌡️";
-    }
-}
-
 function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -82,7 +40,7 @@ function normalizeCurrentData(
         description: capitalizeFirstLetter(
             current?.weather[0]?.description ?? "No weather description"
         ),
-        icon: getIconEmoji(current?.weather[0]?.icon ?? "1d"),
+        weatherCode: current?.weather[0]?.icon ?? "1d",
         humidity: current.humidity,
         wind_speed: Math.round(current.wind_speed * 3.6), // Convertir m/s a kph
         pressure: current.pressure
@@ -101,7 +59,7 @@ function normalizeHourlyForecast(
         return {
             time: formatUnixToLocalTime(hour.dt, timezone),
             temp: Math.round(hour.temp),
-            icon: getIconEmoji(hour?.weather[0]?.icon ?? "1d")
+            weatherCode: hour?.weather[0]?.icon ?? "1d"
         };
     });
 
