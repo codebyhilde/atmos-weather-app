@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express, { type Express } from "express";
-import cors from "cors";
+import { corsMiddleware } from "./middlewares/cors.js";
 import weatherRouter from "./routes/weatherRoutes.js";
 import { weatherRateLimiter } from "./middlewares/rateLimiter.js";
 
@@ -9,34 +9,12 @@ const PORT = process.env.PORT || 3001;
 // Inicialización de Express
 const app: Express = express();
 
+// Desactivación de esta cabecera por seguridad
+app.disable("x-powered-by");
+
 app.set("trust proxy", 1);
 
-const allowedOrigins = [
-    "http://localhost:5173",
-    "https://atmos-weather-one.vercel.app"
-];
-
-const corsOptions = {
-    origin: function (
-        origin: string | undefined,
-        callback: (err: Error | null, allow?: boolean) => void
-    ) {
-        // Permite solicitudes sin origen (como Postman o peticiones del mismo servidor)
-        if (!origin) return callback(null, true);
-
-        // Verificamos si el origen está en nuestra lista
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg =
-                "La política CORS para este sitio no permite el acceso desde el origen especificado.";
-            return callback(new Error(msg), false);
-        }
-
-        // Si pasa la validación, se permite la solicitud
-        return callback(null, true);
-    }
-};
-
-app.use(cors(corsOptions));
+app.use(corsMiddleware());
 
 // Manejo de JSON
 app.use(express.json());
