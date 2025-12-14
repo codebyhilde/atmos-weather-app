@@ -2,7 +2,7 @@
 
 **Atmos** es una aplicación web del clima moderna y de código abierto, construida con una arquitectura de **monorepo** para una gestión de código eficiente. Consume datos de la API de **OpenWeatherMap**, normalizándolos y presentándolos a través de una interfaz de usuario **React** limpia y responsiva.
 
------
+---
 
 ## 🏗️ Arquitectura del Proyecto
 
@@ -10,18 +10,18 @@ El proyecto Atmos sigue una estructura de **Monorepo** gestionada con **pnpm wor
 
 ### 1\. `apps/web` (Frontend)
 
-  * **Rol:** Encargado de la presentación de datos, la interacción del usuario y el manejo del estado.
-  * **Stack:** **React**, **TypeScript**, **Vite** para *bundling* y **Tailwind CSS** para los estilos.
-  * **Funcionalidad:** Renderiza el pronóstico actual y los gráficos de la semana/hora, y además realiza las llamadas a la API interna (ubicada en `apps/api`).
+-   **Rol:** Encargado de la presentación de datos, la interacción del usuario y el manejo del estado.
+-   **Stack:** **React**, **TypeScript**, **Vite** para _bundling_ y **Tailwind CSS** para los estilos.
+-   **Funcionalidad:** Renderiza el pronóstico actual y los gráficos de la semana/hora, y además realiza las llamadas a la API interna (ubicada en `apps/api`).
 
 ### 2\. `apps/api` (Backend)
 
-  * **Rol:** Actúa como un *proxy* entre el Frontend y el proveedor externo (**OpenWeatherMap**), centralizando la lógica de negocio.
-  * **Stack:** **Node.js**, **Express**, y **TypeScript**.
-  * **Funcionalidad:**
-      * Gestiona la **normalización de datos** (transforma la respuesta cruda de OpenWeatherMap a un formato limpio y tipado para el frontend).
-      * Aplica **Rate Limiting** para proteger el backend de OpenWeatherMap y la API.
-      * Gestiona la lógica de **CORS** para restringir el acceso solo a las URLs permitidas.
+-   **Rol:** Actúa como un _proxy_ entre el Frontend y el proveedor externo (**OpenWeatherMap**), centralizando la lógica de negocio.
+-   **Stack:** **Node.js**, **Express**, y **TypeScript**.
+-   **Funcionalidad:**
+-   Gestiona la **normalización de datos** (transforma la respuesta cruda de OpenWeatherMap a un formato limpio y tipado para el frontend).
+-   Aplica **Rate Limiting** para proteger el backend de OpenWeatherMap y la API.
+-   Gestiona la lógica de **CORS** para restringir el acceso solo a las URLs permitidas.
 
 ### 📂 Estructura esencial del Proyecto
 
@@ -50,33 +50,33 @@ El proyecto Atmos sigue una estructura de **Monorepo** gestionada con **pnpm wor
 └── package.json              # Script base y configuración del monorepo
 ```
 
------
+---
 
 ## 🛠️ Stack Tecnológico Detallado
 
-| Componente | Tecnología | Propósito |
-| :--- | :--- | :--- |
-| **Monorepo Manager** | **pnpm Workspaces** | Gestión eficiente de dependencias y *linking* de proyectos. |
-| **Frontend** | **React** + **Vite** | Interfaz de usuario rápida y moderna. |
-| **Backend** | **Node.js** + **Express** | API *proxy* y capa de normalización de datos. |
-| **Tipado** | **TypeScript** | Código más robusto y a prueba de errores en todo el *stack*. |
-| **Estilos** | **Tailwind CSS** | Estilizado rápido y responsivo. |
-| **Datos** | **OpenWeatherMap API** | Fuente principal de datos meteorológicos. |
-| **Gráficos** | **Chart.js** + `react-chartjs-2` | Visualización de tendencias de temperatura. |
+| Componente           | Tecnología                       | Propósito                                                    |
+| :------------------- | :------------------------------- | :----------------------------------------------------------- |
+| **Monorepo Manager** | **pnpm Workspaces**              | Gestión eficiente de dependencias y _linking_ de proyectos.  |
+| **Frontend**         | **React** + **Vite**             | Interfaz de usuario rápida y moderna.                        |
+| **Backend**          | **Node.js** + **Express**        | API _proxy_ y capa de normalización de datos.                |
+| **Tipado**           | **TypeScript**                   | Código más robusto y a prueba de errores en todo el _stack_. |
+| **Estilos**          | **Tailwind CSS**                 | Estilizado rápido y responsivo.                              |
+| **Datos**            | **OpenWeatherMap API**           | Fuente principal de datos meteorológicos.                    |
+| **Gráficos**         | **Chart.js** + `react-chartjs-2` | Visualización de tendencias de temperatura.                  |
 
------
+---
 
 ## ✨ Características Implementadas
 
 Las siguientes funcionalidades ya están operativas en la aplicación:
 
-  * **🔍 Búsqueda de Localidad:** Obtención del clima por ciudad y país (con soporte opcional para estados/provincias).
-  * **🎨 Cambio de Tema:** Alternancia entre el tema claro y oscuro (implementado en `useTheme.ts`).
-  * **📊 Gráficos de Temperatura:** Visualización del pronóstico semanal y por horas mediante gráficos (utilizando `WeeklyForecastChart.tsx` y Chart.js).
-  * **🛡️ Rate Limiting:** Protección en la capa de la API para limitar el número de solicitudes (implementado en `rateLimiter.ts`).
-  * **⚙️ Normalización de Datos:** Limpieza y tipado estricto de los datos de OpenWeatherMap antes de enviarlos al frontend.
+-   **🔍 Búsqueda de Localidad:** Obtención del clima por ciudad y país (con soporte opcional para estados/provincias).
+-   **🎨 Cambio de Tema:** Alternancia entre el tema claro y oscuro (implementado en `useTheme.ts`).
+-   **📊 Gráficos de Temperatura:** Visualización del pronóstico semanal y por horas mediante gráficos (utilizando `WeeklyForecastChart.tsx` y Chart.js).
+-   **🛡️ Rate Limiting:** Protección en la capa de la API para limitar el número de solicitudes (implementado en `rateLimiter.ts`).
+-   **⚙️ Normalización de Datos:** Limpieza y tipado estricto de los datos de OpenWeatherMap antes de enviarlos al frontend.
 
------
+---
 
 ## 🚀 Instalación y Ejecución
 
@@ -84,38 +84,40 @@ Para levantar el proyecto en tu entorno de desarrollo, sigue estos pasos:
 
 1.  **Clonar el repositorio:**
 
-    ```bash
-    git clone https://github.com/codebyhilde/atmos-weather-app.git
-    cd atmos-weather-app
-    ```
+```bash
+git clone https://github.com/codebyhilde/atmos-weather-app.git
+cd atmos-weather-app
+```
 
 2.  **Configurar Variables de Entorno:**
-    Crea un archivo `.env` en el directorio `apps/api` con tu clave de API de OpenWeatherMap:
 
-    ```bash
-    # apps/api/.env
-    OPENWEATHERMAP_API_KEY="TU_CLAVE_AQUI"
-    # El puerto por defecto es 3001
-    PORT=3001 
-    ```
+-   Ve a `https://openweathermap.org/api` y consigue tu API Key si aún no la tienes
+-   Renombra el archivo en el directorio `apps/api` llamado `.env.example` a `.env` y modificalo con tu api key de OpenWeatherMap:
+
+```bash
+# apps/api/.env
+OPENWEATHERMAP_API_KEY = "TU_CLAVE_AQUI"
+# El puerto por defecto es 3001
+PORT = 3001
+```
 
 3.  **Instalar dependencias y arrancar los servicios:**
-    Como se utiliza un monorepo, un solo comando iniciará tanto la API como el Frontend:
+Como se utiliza un monorepo, un solo comando iniciará tanto la API como el Frontend:
 
-    ```bash
-    pnpm install
-    pnpm run dev
-    ```
+```bash
+pnpm install
+pnpm run dev
+```
 
-    Esto iniciará ambos:
+Esto iniciará ambos:
 
-      * **Frontend Web:** en `http://localhost:5173`
-      * **Backend API:** en `http://localhost:3001` (a menos que se cambie el puerto manualmente)
+-   **Frontend Web:** en `http://localhost:5173`
+-   **Backend API:** en `http://localhost:3001` (a menos que se cambie el puerto manualmente)
 
------
+---
 
 ## 🤝 Contribuciones y Contacto
 
 ¡Este proyecto está abierto a sugerencias! Si tienes ideas para mejorar la arquitectura o la interfaz, no dudes en contactarme.
 
------
+---
