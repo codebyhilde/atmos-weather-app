@@ -34,5 +34,3 @@ app.use("/api", weatherRouter);
 app.listen(PORT, () => {
     console.log(`⚡️ Backend Server running at http://localhost:${PORT}`);
 });
-
-export default app;
