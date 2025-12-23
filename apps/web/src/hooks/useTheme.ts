@@ -3,10 +3,18 @@ import { useState, useEffect } from "react";
 type Theme = "light" | "dark";
 
 export function useTheme() {
-    const [theme, setTheme] = useState<Theme>("light");
+    const [theme, setTheme] = useState<Theme>(() => {
+        if (typeof window !== "undefined") {
+            return (localStorage.getItem("theme") as Theme) || "light";
+        }
+
+        return "light";
+    });
 
     const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light");
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
     };
 
     useEffect(() => {
@@ -18,6 +26,6 @@ export function useTheme() {
             root.classList.remove("dark");
         }
     }, [theme]);
-    
-    return { theme, toggleTheme }
+
+    return { theme, toggleTheme };
 }
