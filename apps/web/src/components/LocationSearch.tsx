@@ -37,7 +37,6 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                 }}
                 placeholder="Caracas"
                 error={errors.city}
-                type="city"
             />
 
             <LocationSearchInput
@@ -50,7 +49,6 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                 error={errors.country}
                 listId="country-list"
                 options={countryList}
-                type="country"
             />
 
             {showStates && (
@@ -64,7 +62,6 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                     error={errors.state}
                     listId="state-list"
                     options={usStateList}
-                    type="state"
                 />
             )}
 
