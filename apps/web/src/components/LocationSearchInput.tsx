@@ -5,7 +5,6 @@ interface LocationSearchInputProps {
     error?: string;
     listId?: string;
     options?: Array<{ code: string; name: string }>;
-    type?: "city" | "country" | "state";
 }
 
 export function LocationSearchInput({
@@ -14,8 +13,7 @@ export function LocationSearchInput({
     placeholder,
     error,
     listId,
-    options,
-    type = "city"
+    options
 }: LocationSearchInputProps) {
     return (
         <div className={`relative w-full sm:flex-1 ${error ? "mb-6 sm:mb-0" : "mb-0"}`}>
