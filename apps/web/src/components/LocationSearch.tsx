@@ -1,6 +1,6 @@
 import type { LocationQuery } from "../interfaces/locationQuery";
+import { LocationSearchButton } from "./LocationSearchButton";
 import { useSearch } from "../hooks/useSearch";
-import { Search } from "lucide-react";
 
 interface LocationSearchProps {
     onSearch: (query: LocationQuery) => void;
@@ -106,17 +106,7 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                     )}
                 </div>
             )}
-            <button
-                type="submit"
-                className={`flex-shrink-0 p-2 rounded-full ${
-                    isDisabled
-                        ? "bg-gray-500 text-white cursor-not-allowed"
-                        : "bg-sky-500 transition-colors text-white hover:bg-sky-600"
-                }`}
-                disabled={isDisabled}
-            >
-                <Search className="w-5 h-5" />
-            </button>
+            <LocationSearchButton isDisabled={isDisabled} />
         </form>
     );
 }
