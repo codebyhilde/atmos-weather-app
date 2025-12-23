@@ -70,11 +70,12 @@ El proyecto Atmos sigue una estructura de **Monorepo** gestionada con **pnpm wor
 
 Las siguientes funcionalidades ya están operativas en la aplicación:
 
--   **🔍 Búsqueda de Localidad:** Obtención del clima por ciudad y país (con soporte opcional para estados/provincias).
+-   **🔍 Búsqueda de Localidad:** Obtención del clima por ciudad y país (con soporte opcional para estados en el caso de EE.UU).
 -   **🎨 Cambio de Tema:** Alternancia entre el tema claro y oscuro (implementado en `useTheme.ts`).
 -   **📊 Gráficos de Temperatura:** Visualización del pronóstico semanal y por horas mediante gráficos (utilizando `WeeklyForecastChart.tsx` y Chart.js).
 -   **🛡️ Rate Limiting:** Protección en la capa de la API para limitar el número de solicitudes (implementado en `rateLimiter.ts`).
 -   **⚙️ Normalización de Datos:** Limpieza y tipado estricto de los datos de OpenWeatherMap antes de enviarlos al frontend.
+-  **⌛ Validación en tiempo real**: Mensajes de error informativos que dan feedback inmediato al usuario para que corrija sus consultas.
 
 ---
 
