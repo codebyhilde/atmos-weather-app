@@ -12,14 +12,45 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
     const [city, setCity] = useState("");
     const [countryName, setCountryName] = useState("");
     const [stateName, setStateName] = useState("");
+    const [errors, setErrors] = useState({
+        city: "",
+        country: "",
+        state: ""
+    });
 
     const showStates = countryName === "Estados Unidos";
 
+    // Controla si el botón estará o no activo
+    const isDisabled =
+        !!errors.city ||
+        !!errors.country ||
+        (showStates && !!errors.state) ||
+        !city ||
+        !countryName ||
+        (showStates && !stateName);
+
+    // Eliminar input y errores de estado cuando ya no son necesarios
     useEffect(() => {
         if (!showStates) {
             setStateName("");
+            setErrors(prev => ({ ...prev, state: "" }));
         }
     }, [showStates]);
+
+    // Función para validación en tiempo real
+    const validateField = (name: string, value: string) => {
+        let error = "";
+
+        if (name === "city" && !value.trim()) {
+            error = "La ciudad es requerida";
+        } else if (name === "country" && !value.trim()) {
+            error = "El país es requerido";
+        } else if (name === "state" && showStates && !value.trim()) {
+            error = "Requerido para EE.UU.";
+        }
+
+        setErrors(prev => ({ ...prev, [name]: error }));
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -55,19 +86,30 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
             <input
                 type="text"
                 value={city}
-                onChange={e => setCity(e.target.value)}
+                onChange={e => {
+                    setCity(e.target.value);
+                    validateField("city", e.target.value);
+                }}
                 placeholder="Caracas"
                 className="w-full sm:w-auto px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-inner focus:outline-none focus:ring-2 focus:ring-sky-500"
             />
-
+            {errors.city && (
+                <span className="text-red-500 text-sm">{errors.city}</span>
+            )}
             <input
                 type="text"
                 value={countryName}
-                onChange={e => setCountryName(e.target.value)}
+                onChange={e => {
+                    setCountryName(e.target.value);
+                    validateField("country", e.target.value);
+                }}
                 placeholder="Venezuela"
                 list="country-list"
                 className="w-full sm:w-auto px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-inner focus:outline-none focus:ring-2 focus:ring-sky-500"
             />
+            {errors.country && (
+                <span className="text-red-500 text-sm">{errors.country}</span>
+            )}
             <datalist id="country-list">
                 {countryList.map(c => (
                     <option key={c.code} value={c.name} />
@@ -79,7 +121,12 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                     <input
                         type="text"
                         value={stateName}
-                        onChange={e => setStateName(e.target.value)}
+                        onChange={e => {
+                            setStateName(e.target.value);
+                            if (showStates) {
+                                validateField("state", e.target.value);
+                            }
+                        }}
                         placeholder="Florida"
                         list="state-list"
                         className="w-full sm:w-auto px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-inner focus:outline-none focus:ring-2 focus:ring-sky-500"
@@ -91,10 +138,19 @@ export function LocationSearch({ onSearch }: LocationSearchProps) {
                     </datalist>
                 </>
             )}
-
+            {showStates && errors.state && (
+                <span className="text-red-500 text-sm mt-1">
+                    {errors.state}
+                </span>
+            )}
             <button
                 type="submit"
-                className="flex-shrink-0 p-2 rounded-full bg-sky-500 text-white hover:bg-sky-600 transition-colors"
+                className={
+                    isDisabled
+                        ? "flex-shrink-0 p-2 rounded-full bg-gray-500 text-white cursor-not-allowed"
+                        : "flex-shrink-0 p-2 rounded-full bg-sky-500 text-white hover:bg-sky-600 transition-colors"
+                }
+                disabled={isDisabled}
             >
                 <Search />
             </button>
