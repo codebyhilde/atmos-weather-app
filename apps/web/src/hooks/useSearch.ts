@@ -40,12 +40,38 @@ export function useSearch({ onSearch }: useSearchArgs) {
     const validateField = (name: string, value: string) => {
         let error = "";
 
-        if (name === "city" && !value.trim()) {
-            error = "La ciudad es requerida";
-        } else if (name === "country" && !value.trim()) {
-            error = "El país es requerido";
-        } else if (name === "state" && showStates && !value.trim()) {
-            error = "Requerido para EE.UU.";
+        const trimmedValue = value.trim();
+
+        const isValidText = (text: string): boolean => {
+            // Regex que permite letras, acentos, ñ, ü y espacios
+            return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(text);
+        };
+
+        // Función auxiliar para capitalizar
+        const capitalize = (str: string): string => {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        };
+
+        if (!trimmedValue) {
+            if (name === "city") {
+                error = "La ciudad es requerida";
+            } else if (name === "country") {
+                error = "El país es requerido";
+            } else if (name === "state" && showStates) {
+                error = "Requerido para EE.UU.";
+            }
+        } else {
+            // Validación de formato del texto
+            if (!isValidText(trimmedValue)) {
+                const fieldNames: Record<string, string> = {
+                    city: "ciudad",
+                    country: "país",
+                    state: "estado"
+                };
+
+                error = `${capitalize(fieldNames[name] || "campo"
+                )} solo puede contener letras y espacios`;
+            }
         }
 
         setErrors(prev => ({ ...prev, [name]: error }));
