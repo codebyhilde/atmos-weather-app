@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import type { FormEvent } from "react";
 import { countryList } from "../data/countries";
 import { usStateList } from "../data/usStates";
 import type { LocationQuery } from "../interfaces/locationQuery";
@@ -69,7 +70,8 @@ export function useSearch({ onSearch }: useSearchArgs) {
                     state: "estado"
                 };
 
-                error = `${capitalize(fieldNames[name] || "campo"
+                error = `${capitalize(
+                    fieldNames[name] || "campo"
                 )} solo puede contener letras y espacios`;
             }
         }
@@ -77,7 +79,7 @@ export function useSearch({ onSearch }: useSearchArgs) {
         setErrors(prev => ({ ...prev, [name]: error }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
         const selectedCountry = countryList.find(c => c.name === countryName);
